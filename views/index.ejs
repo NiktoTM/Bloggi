@@ -1,0 +1,38 @@
+<%- include("partials/header.ejs") %>
+
+<link rel="stylesheet" href="style.css">
+
+<h1 class="blog-title">Skriv ett blogginlägg</h1>
+
+<div class="container">
+  <form action="/" method="POST">
+    <div class="centered-textarea">
+      <textarea class="blog-textarea" name="blogtext" placeholder="Skriv in här..."></textarea>
+      <input class="author-name" type="text" name="author" placeholder="Författare">
+      <p></p>
+    </div>
+    <input class="btn post-btn" type="submit" value="Posta inlägget">
+  </form>
+</div>
+
+<div class="all-posts">
+  <h2 class="all-posts-title">Alla inlägg:</h2>
+  <% if(blogPosts.length > 0) { %>
+    <% blogPosts.reverse().forEach(function(post, index) { %>
+      <div class="post">
+        <p class="post-content"><%- post.content.replace(/\n/g, "<br>") %></p>
+        <form action="/delete" method="POST" class="delete-form">
+          <input type="hidden" name="index" value="<%= index %>">
+          
+          <a href="/edit/<%= index %>" class="edit-link">Redigera</a>
+          
+          <button type="submit" class="btn delete-btn">Radera</button>
+        </form>
+      </div>
+    <% }); %>
+  <% } else { %>
+    <p class="no-posts">Inga inlägg ännu. :(</p>
+  <% } %>
+</div>
+
+<%- include("partials/footer.ejs") %>

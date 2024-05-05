@@ -1,0 +1,15 @@
+<%- include("partials/header.ejs") %>
+
+<link rel="stylesheet" href="/style.css">
+
+<h1 class="blog-title">Redigera inlägg</h1>
+<div class="editContainer">
+    <form action="/edit/<%= index %>" method="POST">
+      <textarea class="editedPost" name="editedPost"><%= postToEdit.content %></textarea>
+      
+        <p></p>
+        <input class="editSave" type="submit" value="Spara ändringar" />
+      </form>
+</div>
+
+<%- include("partials/footer.ejs") %>
