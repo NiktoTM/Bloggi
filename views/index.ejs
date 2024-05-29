@@ -1,38 +1,50 @@
-<%- include("partials/header.ejs") %>
+<%- include("partials/header.ejs") %> <!-- Inkluderar sidhuvudet -->
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"> <!-- Länkar till CSS-filen -->
 
 <h1 class="blog-title">Skriv ett blogginlägg</h1>
 
 <div class="container">
+  <!-- Formulär för att skapa ett nytt blogginlägg -->
   <form action="/" method="POST">
     <div class="centered-textarea">
+      <!-- Textarea för att skriva blogginläggets text -->
       <textarea class="blog-textarea" name="blogtext" placeholder="Skriv in här..."></textarea>
+      <!-- Textfält för att ange författarens namn -->
       <input class="author-name" type="text" name="author" placeholder="Författare">
       <p></p>
     </div>
+    <!-- Knapp för att posta blogginlägget -->
     <input class="btn post-btn" type="submit" value="Posta inlägget">
   </form>
 </div>
 
 <div class="all-posts">
   <h2 class="all-posts-title">Alla inlägg:</h2>
+  <!-- Kontroll om det finns några blogginlägg -->
   <% if(blogPosts.length > 0) { %>
+    <!-- Loopar genom blogginläggen i omvänd ordning och visar varje inlägg -->
     <% blogPosts.reverse().forEach(function(post, index) { %>
       <div class="post">
+        <!-- Visar blogginläggets innehåll -->
         <p class="post-content"><%- post.content.replace(/\n/g, "<br>") %></p>
+        <!-- Formulär för att radera ett inlägg -->
         <form action="/delete" method="POST" class="delete-form">
+          <!-- Dold fält för att lagra inläggets index -->
           <input type="hidden" name="index" value="<%= index %>">
           
+          <!-- Länk för att redigera inlägget -->
           <a href="/edit/<%= index %>" class="edit-link">Redigera</a>
           
+          <!-- Knapp för att radera inlägget -->
           <button type="submit" class="btn delete-btn">Radera</button>
         </form>
       </div>
     <% }); %>
   <% } else { %>
+    <!-- Meddelande om det inte finns några inlägg -->
     <p class="no-posts">Inga inlägg ännu. :(</p>
   <% } %>
 </div>
 
-<%- include("partials/footer.ejs") %>
+<%- include("partials/footer.ejs") %> <!-- Inkluderar sidfoten -->
