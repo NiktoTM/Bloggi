@@ -1,15 +1,18 @@
-<%- include("partials/header.ejs") %>
+<%- include("partials/header.ejs") %> 
 
 <link rel="stylesheet" href="/style.css">
 
 <h1 class="blog-title">Redigera inlägg</h1>
 <div class="editContainer">
+    <!-- Formulär för att redigera ett blogginlägg -->
     <form action="/edit/<%= index %>" method="POST">
+      <!-- Textarea som visar innehållet av inlägget som ska redigeras -->
       <textarea class="editedPost" name="editedPost"><%= postToEdit.content %></textarea>
       
         <p></p>
+        <!-- Spara ändringar-knapp -->
         <input class="editSave" type="submit" value="Spara ändringar" />
       </form>
 </div>
 
-<%- include("partials/footer.ejs") %>
+<%- include("partials/footer.ejs") %> <!-- Inkluderar sidfoten -->
